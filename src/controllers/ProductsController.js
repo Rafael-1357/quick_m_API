@@ -5,8 +5,6 @@ module.exports = {
     let data = {error:'', results:[]}
     let products = await ProductsService.getProducts();
 
-    console.log(products)
-
     products.forEach(element => {
       data.results.push({
         id: element.idproduct,
@@ -21,22 +19,22 @@ module.exports = {
     let json = {error:'', result:{}};
     console.log(req.body)
 
-    // let user = req.body.user;
-    // let products = req.body.products;
-    // let totalSale = req.body.totalSale;
-    // let dataSale = req.body.dataSale;
+    let user = req.body.users_iduser;
+    let products = req.body.products;
+    let totalsale = req.body.totalsale;
+    let datesale = req.body.datesale;
 
-    // if(user && products && totalSale && dataSale){
-    //   let Sale = await ProductsService.insert(user, products, totalSale, dataSale);
-    //   json.result = {
-    //     id: Sale,
-    //     products: products,
-    //     totalSale: totalSale,
-    //     dataSale: dataSale
-    //   }
-    // } else {
-    //   json.error = 'Campos não enviados'
-    // }
+    if(user && products && totalsale && datesale){
+      let Sale = await ProductsService.insertSale(user, products, totalsale, datesale);
+      json.result = {
+        id: Sale,
+        products: products,
+        totalSale: totalsale,
+        dataSale: datesale
+      }
+    } else {
+      json.error = 'Campos não enviados'
+    }
 
     res.json(json)
   }

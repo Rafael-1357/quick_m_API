@@ -10,7 +10,8 @@ module.exports = {
     users.forEach(element => {
       data.results.push({
         id: element.iduser,
-        name: element.username
+        name: element.username,
+        role: element.role
       });
     });
 
