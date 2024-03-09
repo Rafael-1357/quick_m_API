@@ -8,5 +8,13 @@ module.exports = {
         accept(results);
       });
     });
+  },
+  authUser: (user) => {
+    return new Promise ((accept, reject) => {
+      db.query('SELECT iduser, username, password, role FROM users WHERE username = ?', [user], (error, results) => {
+        if(error) {reject(error); return;}
+        accept(results);
+      });
+    });
   }
 }

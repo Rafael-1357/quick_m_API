@@ -11,7 +11,7 @@ module.exports = {
   },
   insertSale: (user, products, totalSale, dataSale) => {
     return new Promise ((accept, reject) => {
-      db.query('INSERT INTO sales (users_iduser, products, totalsale, datesale) VALUES (?, ?, ?, ?)', [user, JSON.stringify(products), totalSale, dataSale], (error, results) => {
+      db.query('INSERT INTO sales (iduser, products, totalsale, datesale) VALUES (?, ?, ?, ?)', [user, JSON.stringify(products), totalSale, dataSale], (error, results) => {
         if(error) {reject(error); return;}
         accept(results);
       });
