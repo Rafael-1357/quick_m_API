@@ -23,14 +23,16 @@ module.exports = {
     let products = req.body.products;
     let totalsale = req.body.totalsale;
     let datesale = req.body.datesale;
+    let payment_method = req.body.payment_methods
 
-    if(user && products && totalsale && datesale){
-      let Sale = await ProductsService.insertSale(user, products, totalsale, datesale);
+    if(user && products && totalsale && datesale && payment_method){
+      let Sale = await ProductsService.insertSale(user, products, totalsale, datesale, payment_method);
       json.result = {
         id: Sale,
         products: products,
         totalSale: totalsale,
-        dataSale: datesale
+        dataSale: datesale,
+        payment_method: payment_method
       }
     } else {
       json.error = 'Campos não enviados'
